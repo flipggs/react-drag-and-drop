@@ -3,12 +3,13 @@ import { useState, useRef } from 'react';
 export const useDND = (data) => {
   const [list, setList] = useState(data);
   const [dragging, setDragging] = useState(false);
+  const [countItems, setCountItems] = useState(1);
 
   const dragItem = useRef();
   const dragNode = useRef();
 
   const handleDragStart = (e, params) => {
-    console.log('drag starting', params);
+    //console.log('drag starting', params);
     dragItem.current = params;
     dragNode.current = e.target;
     dragNode.current.addEventListener('dragend', handleDragEnd);
@@ -19,7 +20,7 @@ export const useDND = (data) => {
   }
 
   const handleDragEnter = (e, params) => {
-    console.log('handleDragEnter', params);
+    //console.log('handleDragEnter', params);
     const currentItem = dragItem.current;
     
     if (e.target !== dragNode.current) {
@@ -44,7 +45,7 @@ export const useDND = (data) => {
   }
 
   const handleDragEnd = () => {
-    console.log('ending drag');
+    //console.log('ending drag');
    
     setDragging(false);
     dragNode.current.removeEventListener('dragend', handleDragEnd);
@@ -55,11 +56,21 @@ export const useDND = (data) => {
 
   const getStyles = (params) => {
     const currentItem = dragItem.current;
+    //console.log('currentItem', currentItem);
     
     if (currentItem.grpI === params.grpI && currentItem.itemI === params.itemI)
       return 'current dnd-item';
       
     return 'dnd-item';
+  }
+
+  const addItem = () => {
+    let newList = list.find(x => x.id === 1);
+    let newList2 = list.find(x => x.id === 2);
+    newList.items.push(countItems.toString());
+    setCountItems(countItems + 1);
+    
+    setList([newList, newList2]);
   }
 
   return {
@@ -68,5 +79,6 @@ export const useDND = (data) => {
     handleDragEnter,
     handleDragStart,
     getStyles,
+    addItem,
   }
 }

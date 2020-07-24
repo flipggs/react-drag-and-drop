@@ -4,8 +4,8 @@ import './App.css';
 import DragNDrop from './DragNDrop';
 
 const data = [
-  {title: 'group 1', items: ['1', '2', '3'] },
-  {title: 'group 2', items: ['4', '5'] },
+  { id: 1, title: 'group 1', items: [] },
+  { id: 2, title: 'group 2', items: [] },
 ];
 
 function App() {
