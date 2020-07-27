@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDND } from './useDND';
 
 function DragNDrop({data}){

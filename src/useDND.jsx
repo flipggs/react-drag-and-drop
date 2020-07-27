@@ -28,13 +28,12 @@ export const useDND = (data) => {
       setList(oldList => {
         let newList = JSON.parse(JSON.stringify(oldList));
 
-        const indexCurrentItem = currentItem.grpI;
-        const currentItemSelected = newList[indexCurrentItem];
-
-        const currentItemIndex = currentItem.itemI;
+        const groupIndex = currentItem.grpI;
+        const groupSelected = newList[groupIndex];
         
-        const newListSplice = currentItemSelected.items.splice(currentItemIndex, 1)[0];
-        //console.log('newListSplice', newListSplice);
+        const itemIndex = currentItem.itemI;
+        
+        const newListSplice = groupSelected.items.splice(itemIndex, 1)[0];
         
         newList[params.grpI].items.splice(params.itemI, 0, newListSplice);
 
